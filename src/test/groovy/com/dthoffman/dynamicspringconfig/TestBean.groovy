@@ -15,4 +15,31 @@ class TestBean {
     @Value('${test.integer}')
     Integer testIntegerValue
 
+    @Value('${test.int}')
+    int testIntValue
+
+    @Value('${test.long}')
+    Long testLong
+
+    @Value('${test.primitive.long}')
+    long testPrimitiveLong
+
+    @Value('${test.double}')
+    Double testDouble
+
+    @Value('${test.primitive.double}')
+    double testPrimitiveDouble
+
+    @Value('${test.float}')
+    Float testFloat
+
+    @Value('${test.primitive.float}')
+    float testPrimitiveFloat
+
+    @Value('${test.short}')
+    Short testShort
+
+    @Value('${test.primitive.short}')
+    short testPrimitiveShort
+
 }

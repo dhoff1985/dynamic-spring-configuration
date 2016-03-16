@@ -25,15 +25,32 @@ class SpringConfigIntegrationSpec extends Specification {
     }
 
     @DirtiesContext
-    @Ignore('in progress')
     def "bean gets updated on config change event"() {
         when:
         propertyEventBus.publishChange('test.string', 'value-from-event')
-        propertyEventBus.publishChange('test.integer', '2')
+        propertyEventBus.publishChange('test.integer', '5')
+        propertyEventBus.publishChange('test.int', '5')
+        propertyEventBus.publishChange('test.long', '5')
+        propertyEventBus.publishChange('test.primitive.long', '5')
+        propertyEventBus.publishChange('test.double', '.5')
+        propertyEventBus.publishChange('test.primitive.double', '.5')
+        propertyEventBus.publishChange('test.float', '.5')
+        propertyEventBus.publishChange('test.primitive.float', '.5')
+        propertyEventBus.publishChange('test.short', '0')
+        propertyEventBus.publishChange('test.primitive.short', '0')
 
         then:
         testBean.testStringValue == 'value-from-event'
-        testBean.testIntegerValue == 2
+        testBean.testIntegerValue == 5
+        testBean.testIntValue == 5
+        testBean.testLong == 5l
+        testBean.testPrimitiveLong == 5l
+        testBean.testDouble - 0.5 < 0.001
+        testBean.testPrimitiveDouble - 0.5 < 0.001
+        testBean.testFloat - 0.5 < 0.001
+        testBean.testPrimitiveFloat - 0.5 < 0.001
+        ((int)testBean.testShort) == 0
+        ((int)testBean.testPrimitiveShort) == 0
     }
 
 
